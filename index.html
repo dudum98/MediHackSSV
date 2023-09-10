@@ -19,7 +19,7 @@
     <div class="container mx-auto mt-8 p-4">
         <section class="bg-white rounded-lg shadow-md p-6 mb-8">
             <h2 class="text-xl font-semibold mb-4">Welcome to the Mental Health Tracker</h2>
-            <p class="text-gray-600">Log your mood and visualize your progress.</p>
+            <h3 class="text-gray-600">Log your mood and visualize your progress.</h3>
         </section>
 
         <section class="bg-white rounded-lg shadow-md p-6 mb-8">
@@ -27,9 +27,18 @@
             <div class="flex items-center mb-4">
                 <label for="moodCategory" class="mr-2">Select your mood category:</label>
                 <select id="moodCategory" class="border rounded px-2 py-1">
-                    <option value="happiness">Happiness</option>
-                    <option value="appetite">Appetite</option>
-                    <option value="anxiety">Anxiety</option>
+                    <option value="a">Afraid</option>
+                    <option value="b">Anxious</option>
+                    <option value="c">Ashamed</option>
+                    <option value="d">Calm</option>
+                    <option value="e">Challenged</option>
+                    <option value="f">Depressed</option>
+                    <option value="g">Embarrassed</option>
+                    <option value="h">Excited</option>
+                    <option value="i">Happy</option>
+                    <option value="j">Irritated</option>
+                    <option value="k">Mad</option>
+                    <option value="l">Sad</option>
                     <!-- Add more mood categories as needed -->
                 </select>
                 <label for="moodRating" class="mr-2">Rate your mood (1 to 5):</label>
@@ -48,6 +57,10 @@
             <div class="mood-history">
                 <h3 class="text-lg font-semibold">Mood History</h3>
                 <p class="text-gray-600">No mood data available.</p>
+            </div>
+            <div class="mood-summary">
+                <h3>Your Mood Summary</h3>
+                <button onclick="makeMoodSummary()">Generate Your Summary</button>
             </div>
         </section>
     </div>

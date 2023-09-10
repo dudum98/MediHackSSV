@@ -1,8 +1,8 @@
 /* Reset some default styles */
-body, h1, h2, h3, p, ul, li {
-    margin: 0;
-    padding: 0;
-    color: #111827;
+body, h1, h2, p, ul, li {
+    margin: 2px;
+    padding: 2px;
+    color: #0f47c1;
 }
 
 /* Global styles */
@@ -36,10 +36,19 @@ header {
 }
 
 /* Heading styles */
-h1, h2, h3 {
+h1, h2 {
     color: #fff; /* Heading text color */
     font-weight: bold;
 }
+
+h3 {
+    color:#2980b9;
+    font-size: 24px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+
 
 /* Paragraph styles */
 p {
@@ -49,8 +58,8 @@ p {
 
 /* Form element styles */
 select, input[type="text"] {
-    padding: 10px;
-    margin-right: 10px;
+    padding: 5px;
+    margin-right: 5px;
     border: 1px solid #444; /* Form element border color */
     border-radius: 5px;
     font-size: 16px;
