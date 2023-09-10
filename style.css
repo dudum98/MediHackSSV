@@ -1,76 +1,95 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+    color: #111827;
+}
 
-        body, h1, h2, h3, p, ul, li {
-            margin: 0;
-            padding: 0;
-        }
+/* Global styles */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #e49d9d; /* Dark background color */
+    margin: 0;
+    padding: 0;
+    color: #fff; /* Text color */
+    line-height: 1.6;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-        }
+/* Header styles */
+header {
+    background-color: #111827; /* Dark header background color */
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-        header {
-            background-color: #3498db;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #1E212D; /* Dark container background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
-        }
+/* Heading styles */
+h1, h2, h3 {
+    color: #fff; /* Heading text color */
+    font-weight: bold;
+}
 
-        h1, h2, h3 {
-            color: #333;
-        }
+/* Paragraph styles */
+p {
+    color: #ccc; /* Text color */
+    line-height: 1.4;
+}
 
-        p {
-            color: #666;
-        }
+/* Form element styles */
+select, input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #444; /* Form element border color */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #333; /* Form element background color */
+    color: #fff; /* Form element text color */
+}
 
-        select, input[type="text"] {
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+/* Button styles */
+button {
+    background-color: #10B981; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 14px 28px; /* Increase padding for larger button */
+    border-radius: 20px; /* Increased border-radius for rounded buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 18px; /* Increase font size */
+    font-weight: bold;
+}
 
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+button:hover {
+    background-color: #059669; /* Hover background color */
+    transform: scale(1.05); /* Increase size on hover */
+}
 
-        button:hover {
-            background-color: #2980b9;
-        }
+/* Download button styles */
+#downloadPdfButton {
+    background-color: #3498db; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px; /* Increased border-radius for rounded button */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
 
-        .mood-history, .activity-history {
-            margin-top: 20px;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        ul li {
-            margin-bottom: 10px;
-        }
-
-        /* Media query for responsive design */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-            }
-        }
-
+#downloadPdfButton:hover {
+    background-color: #2980b9; /* Hover background color */
+}
