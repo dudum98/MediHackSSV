@@ -1,200 +1,110 @@
-// Initialize mood and activity history arrays
-const moodHistory = [];
-const activityHistory = [];
+ // Initialize mood history array
+ const moodHistory = [];
 
-// Function to log mood
-function logMood() {
-    const moodSelect = document.getElementById("mood");
-    const customMoodInput = document.getElementById("customMood");
-    const selectedMood = customMoodInput.value || moodSelect.value;
-    const currentTime = new Date();
+ // Function to log mood
+ function logMood() {
+     const moodCategorySelect = document.getElementById("moodCategory");
+     const moodRatingSelect = document.getElementById("moodRating");
+     const customMoodInput = document.getElementById("customMood");
+     const selectedMoodCategory = moodCategorySelect.value;
+     const selectedMoodRating = moodRatingSelect.value;
+     const currentTime = new Date();
 
-    // Store the mood, date, and time in the mood history
-    moodHistory.push({
-        mood: selectedMood,
-        date: currentTime.toLocaleDateString(),
-        time: currentTime.toLocaleTimeString(),
-    });
+     // Store the mood category, mood rating, date, and time in the mood history
+     moodHistory.push({
+         moodCategory: selectedMoodCategory,
+         moodRating: selectedMoodRating,
+         date: currentTime.toLocaleDateString(),
+         time: currentTime.toLocaleTimeString(),
+     });
 
-    // Update the mood history visualization
-    updateMoodHistory();
-    updateMoodChart();
-    customMoodInput.value = ""; // Clear the custom mood input
-}
+     // Update the mood history visualization
+     updateMoodHistory();
+     updateMoodChart();
+     customMoodInput.value = ""; // Clear the custom mood input
+ }
 
-// Function to log activity
-function logActivity() {
-    const activitySelect = document.getElementById("activity");
-    const customActivityInput = document.getElementById("customActivity");
-    const selectedActivity = customActivityInput.value || activitySelect.value;
-    const currentTime = new Date();
+ // Function to delete a mood entry
+ function deleteMood(index) {
+     moodHistory.splice(index, 1);
+     updateMoodHistory();
+     updateMoodChart();
+ }
 
-    // Store the activity, date, and time in the activity history
-    activityHistory.push({
-        activity: selectedActivity,
-        date: currentTime.toLocaleDateString(),
-        time: currentTime.toLocaleTimeString(),
-    });
+ // Function to update mood history
+ function updateMoodHistory() {
+     const moodHistoryDiv = document.querySelector(".mood-history");
+     moodHistoryDiv.innerHTML = "<h3 class='text-lg font-semibold'>Mood History</h3>";
 
-    // Update the activity history visualization
-    updateActivityHistory();
-    customActivityInput.value = ""; // Clear the custom activity input
-}
+     if (moodHistory.length === 0) {
+         moodHistoryDiv.innerHTML += "<p class='text-gray-600'>No mood data available.</p>";
+     } else {
+         const ul = document.createElement("ul");
 
-// Function to delete a mood entry
-function deleteMood(index) {
-    moodHistory.splice(index, 1);
-    updateMoodHistory();
-    updateMoodChart();
-}
+         moodHistory.forEach((entry, index) => {
+             const li = document.createElement("li");
+             li.innerHTML = `<strong>Date:</strong> ${entry.date}, <strong>Time:</strong> ${entry.time}, <strong>Mood Category:</strong> ${entry.moodCategory}, <strong>Mood Rating:</strong> ${entry.moodRating} <button onclick="deleteMood(${index})" class="btn btn-danger btn-sm">Delete</button>`;
+             ul.appendChild(li);
+         });
 
-// Function to delete an activity entry
-function deleteActivity(index) {
-    activityHistory.splice(index, 1);
-    updateActivityHistory();
-}
+         moodHistoryDiv.appendChild(ul);
+     }
+ }
 
-// Function to update mood history
-function updateMoodHistory() {
-    const moodHistoryDiv = document.querySelector(".mood-history");
-    moodHistoryDiv.innerHTML = "<h3 class='text-lg font-semibold'>Mood History</h3>";
+ // Function to update mood chart
+ function updateMoodChart() {
+     const moodLabels = moodHistory.map((entry) => entry.date);
+     const moodData = moodHistory.map((entry) => entry.moodRating);
 
-    if (moodHistory.length === 0) {
-        moodHistoryDiv.innerHTML += "<p class='text-gray-600'>No mood data available.</p>";
-    } else {
-        const ul = document.createElement("ul");
+     // Update mood chart
+     const moodChartCanvas = document.getElementById("moodChart");
+     const moodChartContext = moodChartCanvas.getContext("2d");
 
-        moodHistory.forEach((entry, index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `<strong>Date:</strong> ${entry.date}, <strong>Time:</strong> ${entry.time}, <strong>Mood:</strong> ${entry.mood} <button onclick="deleteMood(${index})" class="text-red-500 ml-2">Delete</button>`;
-            ul.appendChild(li);
-        });
+     const moodChart = new Chart(moodChartContext, {
+         type: "line",
+         data: {
+             labels: moodLabels,
+             datasets: [
+                 {
+                     label: "Mood Rating",
+                     backgroundColor: "rgba(75, 192, 192, 0.2)",
+                     borderColor: "rgba(75, 192, 192, 1)",
+                     borderWidth: 1,
+                     data: moodData,
+                 },
+             ],
+         },
+         options: {
+             responsive: true,
+             maintainAspectRatio: false,
+         },
+     });
+ }
 
-        moodHistoryDiv.appendChild(ul);
-    }
-}
+ // Event listener for the download button
+ document.getElementById('downloadPdfButton').addEventListener('click', generateAndDownloadPDF);
 
-// Function to update mood chart
-function updateMoodChart() {
-    const moodLabels = moodHistory.map((entry) => entry.date);
-    const moodData = moodHistory.map((entry) => entry.mood);
+ // Function to generate and download PDF
+ function generateAndDownloadPDF() {
+     // Create a new jsPDF instance
+     const doc = new jsPDF();
 
-    // Group mood entries by day, month, and year
-    const moodDataByDay = groupDataByDay(moodHistory);
-    const moodDataByMonth = groupDataByMonth(moodHistory);
-    const moodDataByYear = groupDataByYear(moodHistory);
+     // Add content to the PDF
+     doc.text('Mood Tracker Data', 10, 10);
+     doc.text('Mood History:', 10, 20);
 
-    // Update mood charts for day, month, and year
-    updateMoodChartByPeriod("moodChartDay", moodDataByDay, "Day");
-    updateMoodChartByPeriod("moodChartMonth", moodDataByMonth, "Month");
-    updateMoodChartByPeriod("moodChartYear", moodDataByYear, "Year");
-}
+     // Add mood data to the PDF
+     moodHistory.forEach((entry, index) => {
+         const yPos = 30 + index * 10;
+         doc.text(`Date: ${entry.date}, Time: ${entry.time}, Mood Category: ${entry.moodCategory}, Mood Rating: ${entry.moodRating}`, 10, yPos);
+     });
 
-// Function to group data by day
-function groupDataByDay(data) {
-    const groupedData = {};
+     // Save the PDF with a unique name (e.g., timestamp)
+     const timestamp = new Date().toISOString().replace(/[^0-9]/g, '');
+     const pdfFileName = `mood_data_${timestamp}.pdf`;
+     doc.save(pdfFileName);
+ }
 
-    data.forEach((entry) => {
-        const date = entry.date;
-        if (!groupedData[date]) {
-            groupedData[date] = [];
-        }
-        groupedData[date].push(entry.mood);
-    });
-
-    return groupedData;
-}
-
-// Function to group data by month
-function groupDataByMonth(data) {
-    const groupedData = {};
-
-    data.forEach((entry) => {
-        const [month, year] = entry.date.split("/");
-        const key = `${month}/${year}`;
-        if (!groupedData[key]) {
-            groupedData[key] = [];
-        }
-        groupedData[key].push(entry.mood);
-    });
-
-    return groupedData;
-}
-
-// Function to group data by year
-function groupDataByYear(data) {
-    const groupedData = {};
-
-    data.forEach((entry) => {
-        const [, year] = entry.date.split("/");
-        if (!groupedData[year]) {
-            groupedData[year] = [];
-        }
-        groupedData[year].push(entry.mood);
-    });
-
-    return groupedData;
-}
-
-// Function to update mood chart for a specific period
-function updateMoodChartByPeriod(chartId, data, periodLabel) {
-    const moodLabels = Object.keys(data);
-    const moodData = moodLabels.map((label) => data[label].length);
-
-    const moodChartCanvas = document.getElementById(chartId);
-    const moodChartContext = moodChartCanvas.getContext("2d");
-
-    const moodChart = new Chart(moodChartContext, {
-        type: "bar",
-        data: {
-            labels: moodLabels,
-            datasets: [
-                {
-                    label: `Mood by ${periodLabel}`,
-                    backgroundColor: "rgba(75, 192, 192, 0.2)",
-                    borderColor: "rgba(75, 192, 192, 1)",
-                    borderWidth: 1,
-                    data: moodData,
-                },
-            ],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    stacked: true,
-                },
-                y: {
-                    beginAtZero: true,
-                },
-            },
-        },
-    });
-}
-
-// Function to update activity history
-function updateActivityHistory() {
-    const activityHistoryDiv = document.querySelector(".activity-history");
-    activityHistoryDiv.innerHTML = "<h3 class='text-lg font-semibold'>Activity History</h3>";
-
-    if (activityHistory.length === 0) {
-        activityHistoryDiv.innerHTML += "<p class='text-gray-600'>No activity data available.</p>";
-    } else {
-        const ul = document.createElement("ul");
-
-        activityHistory.forEach((entry, index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `<strong>Date:</strong> ${entry.date}, <strong>Time:</strong> ${entry.time}, <strong>Activity:</strong> ${entry.activity} <button onclick="deleteActivity(${index})" class="text-red-500 ml-2">Delete</button>`;
-            ul.appendChild(li);
-        });
-
-        activityHistoryDiv.appendChild(ul);
-    }
-}
-
-// Initial update of history sections and mood chart
-updateMoodHistory();
-updateActivityHistory();
-updateMoodChart();
-
+ // Initial update of mood history and mood chart
+ updateMoodHistory();
+ updateMoodChart();
