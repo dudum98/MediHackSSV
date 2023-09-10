@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+
     <title>Mental Health Tracker</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body class="bg-gray-100 font-sans">
     <header class="bg-blue-500 text-white text-center py-4">
@@ -27,42 +27,30 @@
             <div class="flex items-center mb-4">
                 <label for="moodCategory" class="mr-2">Select your mood category:</label>
                 <select id="moodCategory" class="border rounded px-2 py-1">
-                
-                    <option value="A1">Anxious</option>
-                    <option value="A2">Calm</option>
-                    <option value="A3">Irritated</option>
-
-                    <option value="B1">Depressed</option>
-                    <option value="B2">Happy</option>
-                    <option value="B3">Mad</option>
-                    <option value="B4">Sad</option>
-
-                    <option value="C1">Embarrassed</option>
-                    <option value="C2">Excited</option>
+                    <option value="Anxious">Anxious</option>
+                    <option value="Calm">Calm</option>
+                    <option value="Irritated">Irritated</option>
+                    <option value="Depressed">Depressed</option>
+                    <option value="Happy">Happy</option>
+                    <option value="Mad">Mad</option>
+                    <option value="Sad">Sad</option>
+                    <option value="Embarrassed">Embarrassed</option>
+                    <option value="Excited">Excited</option>
+                    <option value="Full">Good Appetite</option>
+                    <option value="Starving">Bad Appetite</option>
                     <!-- Add more mood categories as needed -->
                 </select>
-                <label for="moodRating" class="mr-2">Rate your mood (1 to 5):</label>
-                <select id="moodRating" class="border rounded px-2 py-1">
-                    <option value="1">1 - Lowest</option>
-                    <option value="2">2 - Low</option>
-                    <option value="3">3 - Neutral</option>
-                    <option value="4">4 - High</option>
-                    <option value="5">5 - Highest</option>
-                </select>
-                <input type="text" id="customMood" placeholder="Custom Mood" class="border rounded px-2 py-1 ml-2">
                 <button onclick="logMood()" class="bg-blue-500 text-white px-4 py-2 rounded">Log Mood</button>
                 <button id="downloadPdfButton">Download PDF</button>
-
             </div>
             <div class="mood-history">
                 <h3 class="text-lg font-semibold">Mood History</h3>
                 <p class="text-gray-600">No mood data available.</p>
             </div>
-            <div class="mood-summary">
-                <h3>Your Mood Summary</h3>
-                <button onclick="makeMoodSummary()">Generate Your Summary</button>
-            </div>
         </section>
+    </div>
+    <div id="moodPieChart" class="mt-4">
+        <canvas id="moodChart"></canvas>
     </div>
 
     <script src="script.js"></script>

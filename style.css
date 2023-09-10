@@ -7,7 +7,7 @@ body, h1, h2, p, ul, li {
 
 /* Global styles */
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family:  'Cabin', sans-serif;
     background-color: #e49d9d; /* Dark background color */
     margin: 0;
     padding: 0;
@@ -38,6 +38,7 @@ header {
 /* Heading styles */
 h1, h2 {
     color: #fff; /* Heading text color */
+    font-family: 'Dancing Script', cursive;
     font-weight: bold;
 }
 
