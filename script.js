@@ -1,6 +1,7 @@
  // Initialize mood history array
  const moodHistory = [];
-
+ var moodValue = 0;
+ var moodAverage = 0;
  // Function to log mood
  function logMood() {
      const moodCategorySelect = document.getElementById("moodCategory");
@@ -108,3 +109,37 @@
  // Initial update of mood history and mood chart
  updateMoodHistory();
  updateMoodChart();
+
+
+ function makeMoodSummary() {
+    for(i = 0; i < moodHistory.length; i++){
+        if(moodHistory[i].moodCategory = "a"){
+            moodValue = moodValue + 3;
+        }else if(moodHistory[i].moodCategory = "b"){
+            moodValue = moodValue + 3;
+        }else if(moodHistory[i].moodCategory = "c"){
+            moodValue = moodValue + 2;
+        }else if(moodHistory[i].moodCategory = "d"){
+            moodValue = moodValue + 7;
+        }else if(moodHistory[i].moodCategory = "e"){
+            moodValue = moodValue + 6;
+        }else if(moodHistory[i].moodCategory = "f"){
+            moodValue = moodValue + 0;
+        }else if(moodHistory[i].moodCategory = "g"){
+            moodValue = moodValue + 1;
+        }else if(moodHistory[i].moodCategory = "h"){
+            moodValue = moodValue + 8;
+        }else if(moodHistory[i].moodCategory = "i"){
+            moodValue = moodValue + 9;
+        }else if(moodHistory[i].moodCategory = "j"){
+            moodValue = moodValue + 3;
+        }else if(moodHistory[i].moodCategory = "k"){
+            moodValue = moodValue + 2;
+        }else if(moodHistory[i].moodCategory = "l"){
+            moodValue = moodValue + 3;
+        }
+    }
+    console.log(moodValue);
+    moodAverage = moodValue / moodHistory.length;
+    console.log(moodAverage);
+ }
