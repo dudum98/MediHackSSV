@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mental Health Tracker</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
-   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+
 </head>
 <body class="bg-gray-100 font-sans">
     <header class="bg-blue-500 text-white text-center py-4">
@@ -16,60 +19,38 @@
     <div class="container mx-auto mt-8 p-4">
         <section class="bg-white rounded-lg shadow-md p-6 mb-8">
             <h2 class="text-xl font-semibold mb-4">Welcome to the Mental Health Tracker</h2>
-            <p class="text-gray-600">Log your mood and activities, and visualize your progress.</p>
+            <p class="text-gray-600">Log your mood and visualize your progress.</p>
         </section>
 
         <section class="bg-white rounded-lg shadow-md p-6 mb-8">
             <h2 class="text-xl font-semibold mb-4">Mood Tracker</h2>
             <div class="flex items-center mb-4">
-                <label for="mood" class="mr-2">Select your mood:</label>
-                <select id="mood" class="border rounded px-2 py-1">
-                    <option value="happy">Happy</option>
-                    <option value="sad">Sad</option>
-                    <option value="neutral">Neutral</option>
-                    <option value="angry">Angry</option>
-                    <option value="anxious">Anxious</option>
-                    <option value="excited">Excited</option>
-                    <option value="grateful">Grateful</option>
-                    <option value="procrastination">Procrastination</option>
+                <label for="moodCategory" class="mr-2">Select your mood category:</label>
+                <select id="moodCategory" class="border rounded px-2 py-1">
+                    <option value="happiness">Happiness</option>
+                    <option value="appetite">Appetite</option>
                     <option value="anxiety">Anxiety</option>
-                    <option value="cry">Cry</option>
-                    <option value="joyful">Joyful</option>
-                    <option value="panic-attacks">Panic Attacks</option>
-                    <option value="none">None</option> <!-- Added "None" option -->
+                    <!-- Add more mood categories as needed -->
+                </select>
+                <label for="moodRating" class="mr-2">Rate your mood (1 to 5):</label>
+                <select id="moodRating" class="border rounded px-2 py-1">
+                    <option value="1">1 - Lowest</option>
+                    <option value="2">2 - Low</option>
+                    <option value="3">3 - Neutral</option>
+                    <option value="4">4 - High</option>
+                    <option value="5">5 - Highest</option>
                 </select>
                 <input type="text" id="customMood" placeholder="Custom Mood" class="border rounded px-2 py-1 ml-2">
                 <button onclick="logMood()" class="bg-blue-500 text-white px-4 py-2 rounded">Log Mood</button>
+                <button id="downloadPdfButton">Download PDF</button>
+
             </div>
             <div class="mood-history">
                 <h3 class="text-lg font-semibold">Mood History</h3>
                 <p class="text-gray-600">No mood data available.</p>
             </div>
         </section>
-
-        <section class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-semibold mb-4">Activity Tracker</h2>
-            <div class="flex items-center mb-4">
-                <label for="activity" class="mr-2">Select your activity:</label>
-                <select id="activity" class="border rounded px-2 py-1">
-                    <option value="work">Work</option>
-                    <option value="study">Study</option>
-                    <option value="gym">Gym</option>
-                    <option value="eat-out">Eat Out</option>
-                    <option value="play-game">Play Game</option>
-                    <option value="watch-something">Watch Something</option>
-                    <option value="none">None</option> <!-- Added "None" option -->
-                </select>
-                <input type="text" id="customActivity" placeholder="Custom Activity" class="border rounded px-2 py-1 ml-2">
-                <button onclick="logActivity()" class="bg-blue-500 text-white px-4 py-2 rounded">Log Activity</button>
-            </div>
-            <div class="activity-history">
-                <h3 class="text-lg font-semibold">Activity History</h3>
-                <p class="text-gray-600">No activity data available.</p>
-            </div>
-        </section>
     </div>
-    
 
     <script src="script.js"></script>
 </body>
