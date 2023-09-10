@@ -2,6 +2,7 @@
  const moodHistory = [];
  var moodValue = 0;
  var moodAverage = 0;
+ var anxi, calm, irri, depr, happ, mad, sad, emba, exci =0;
  // Function to log mood
  function logMood() {
      const moodCategorySelect = document.getElementById("moodCategory");
@@ -113,33 +114,47 @@
 
  function makeMoodSummary() {
     for(i = 0; i < moodHistory.length; i++){
-        if(moodHistory[i].moodCategory = "a"){
-            moodValue = moodValue + 3;
-        }else if(moodHistory[i].moodCategory = "b"){
-            moodValue = moodValue + 3;
-        }else if(moodHistory[i].moodCategory = "c"){
-            moodValue = moodValue + 2;
-        }else if(moodHistory[i].moodCategory = "d"){
-            moodValue = moodValue + 7;
-        }else if(moodHistory[i].moodCategory = "e"){
-            moodValue = moodValue + 6;
-        }else if(moodHistory[i].moodCategory = "f"){
-            moodValue = moodValue + 0;
-        }else if(moodHistory[i].moodCategory = "g"){
+        if(moodHistory[i].moodCategory = "A1"){
             moodValue = moodValue + 1;
-        }else if(moodHistory[i].moodCategory = "h"){
-            moodValue = moodValue + 8;
-        }else if(moodHistory[i].moodCategory = "i"){
-            moodValue = moodValue + 9;
-        }else if(moodHistory[i].moodCategory = "j"){
+            anxi++;
+        }else if(moodHistory[i].moodCategory = "A2"){
             moodValue = moodValue + 3;
-        }else if(moodHistory[i].moodCategory = "k"){
+            calm++;
+        }else if(moodHistory[i].moodCategory = "A3"){
             moodValue = moodValue + 2;
-        }else if(moodHistory[i].moodCategory = "l"){
+            irri++;
+        }else if(moodHistory[i].moodCategory = "B1"){
+            moodValue = moodValue + 1;
+            depr++;
+        }else if(moodHistory[i].moodCategory = "B2"){
             moodValue = moodValue + 3;
+            happ++;
+        }else if(moodHistory[i].moodCategory = "B3"){
+            moodValue = moodValue + 2;
+            mad++;
+        }else if(moodHistory[i].moodCategory = "B4"){
+            moodValue = moodValue + 2;
+            sad++;
+        }else if(moodHistory[i].moodCategory = "C1"){
+            moodValue = moodValue + 1;
+            embr++;
+        }else if(moodHistory[i].moodCategory = "C2"){
+            moodValue = moodValue + 2;
+            exci++;
         }
+
     }
     console.log(moodValue);
     moodAverage = moodValue / moodHistory.length;
     console.log(moodAverage);
+    console.log(anxi);
+    console.log(calm);
+    console.log(irri);
+    console.log(depr);
+    console.log(happ);
+    console.log(mad);
+    console.log(sad);
+    console.log(embr);
+    console.log(exci);
+
  }
