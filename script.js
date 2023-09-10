@@ -17,10 +17,10 @@ function logMood() {
 
 function updateMoodHistory() {
     const moodHistoryDiv = document.querySelector(".mood-history");
-    moodHistoryDiv.innerHTML = "<h3 class='text-lg font-semibold'>Mood History</h3>";
+    moodHistoryDiv.innerHTML = "<h3 class='text'>Mood History</h3>";
 
     if (moodHistory.length === 0) {
-        moodHistoryDiv.innerHTML += "<p class='text-gray-600'>No mood data available.</p>";
+        moodHistoryDiv.innerHTML += "<p class='text'>No mood data available.</p>";
     } else {
         const ul = document.createElement("ul");
 

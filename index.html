@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
 
-    <title>Mental Health Tracker</title>
+    <title>Mood Matrix Main Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -13,17 +13,17 @@
 </head>
 <body class="bg-gray-100 font-sans">
     <header class="bg-blue-500 text-white text-center py-4">
-        <h1 class="text-2xl font-bold">Mental Health Tracker</h1>
+        <h4 class="text-2xl font-bold">Mood Matrix</h4>
     </header>
 
     <div class="container mx-auto mt-8 p-4">
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Welcome to the Mental Health Tracker</h2>
-            <h3 class="text-gray-600">Log your mood and visualize your progress.</h3>
+        <section class="bg-black rounded-lg shadow-md p-6 mb-8">
+            <h3 class="text">Welcome to the Mental Health Tracker!</h3>
+            <h3 class="text">Log your mood and visualize your progress.</h3>
         </section>
 
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4">Mood Tracker</h2>
+        <section class="bg-black rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text">Mood Tracker</h2>
             <div class="flex items-center mb-4">
                 <label for="moodCategory" class="mr-2">Select your mood category:</label>
                 <select id="moodCategory" class="border rounded px-2 py-1">
@@ -40,12 +40,11 @@
                     <option value="Starving">Bad Appetite</option>
                     <!-- Add more mood categories as needed -->
                 </select>
-                <button onclick="logMood()" class="bg-blue-500 text-white px-4 py-2 rounded">Log Mood</button>
-                <button id="downloadPdfButton">Download PDF</button>
+                <button onclick="logMood()" class="">Log Mood</button>
             </div>
             <div class="mood-history">
-                <h3 class="text-lg font-semibold">Mood History</h3>
-                <p class="text-gray-600">No mood data available.</p>
+                <h3 class="text">Mood History</h3>
+                <p class="text">No mood data available.</p>
             </div>
         </section>
     </div>

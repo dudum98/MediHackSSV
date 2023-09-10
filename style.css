@@ -2,7 +2,7 @@
 body, h1, h2, p, ul, li {
     margin: 2px;
     padding: 2px;
-    color: #0f47c1;
+    
 }
 
 /* Global styles */
@@ -37,12 +37,26 @@ header {
 
 /* Heading styles */
 h1, h2 {
-    color: #fff; /* Heading text color */
+    color: #2980b9; /* Heading text color */
     font-family: 'Dancing Script', cursive;
     font-weight: bold;
+    font-size: 24px;
 }
 
 h3 {
+    color:#2980b9;
+    font-size: 24px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+h4{
+    color: white;
+    font-size: 32px;
+    font-family: 'Dancing Script', cursive;
+}
+
+label {
     color:#2980b9;
     font-size: 24px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -53,8 +67,17 @@ h3 {
 
 /* Paragraph styles */
 p {
-    color: #ccc; /* Text color */
+    color:#059669; /* Text color */
     line-height: 1.4;
+}
+
+strong{
+    color:#059669;
+    
+}
+
+h5{
+    align-self: center;
 }
 
 /* Form element styles */
@@ -70,7 +93,7 @@ select, input[type="text"] {
 
 /* Button styles */
 button {
-    background-color: #10B981; /* Button background color */
+    background-color:#2980b9; /* Button background color */
     color: #fff; /* Button text color */
     border: none;
     padding: 14px 28px; /* Increase padding for larger button */
